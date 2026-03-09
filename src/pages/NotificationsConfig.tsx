@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
-import { ChitFund, NotificationConfig } from '../types'
+import { NotificationConfig } from '../types'
+
+type FundOption = { id: string; name: string }
 import { Bell, Save } from 'lucide-react'
 import toast from 'react-hot-toast'
 
@@ -20,7 +22,7 @@ const EVENT_TYPES = [
 
 export default function NotificationsConfig() {
   const { activeCompany, user } = useAuth()
-  const [funds, setFunds] = useState<ChitFund[]>([])
+  const [funds, setFunds] = useState<FundOption[]>([])
   const [selectedFund, setSelectedFund] = useState<string>('')
   const [configs, setConfigs] = useState<Record<string, boolean>>({})
   const [loading, setLoading] = useState(false)

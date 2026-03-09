@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
-import { Auction, ChitFund } from '../types'
+import { Auction } from '../types'
+
+type FundOption = { id: string; name: string }
 import { Gavel, Plus, Calendar, Trophy } from 'lucide-react'
 import { format } from 'date-fns'
 import toast from 'react-hot-toast'
@@ -10,7 +11,7 @@ import toast from 'react-hot-toast'
 export default function Auctions() {
   const { activeCompany, user } = useAuth()
   const [auctions, setAuctions] = useState<Auction[]>([])
-  const [funds, setFunds] = useState<ChitFund[]>([])
+  const [funds, setFunds] = useState<FundOption[]>([])
   const [loading, setLoading] = useState(true)
   const [showCreate, setShowCreate] = useState(false)
   const [newAuction, setNewAuction] = useState({ fund_id: '', month_number: 1, scheduled_at: '' })
